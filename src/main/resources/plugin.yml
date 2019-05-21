@@ -1,5 +1,4 @@
 name: WorldManager
 version: ${project.version}
 main: me.kici33.worldmanager.WorldManager
-api-version: 1.14.1
 authors: [Gieted, kici33]

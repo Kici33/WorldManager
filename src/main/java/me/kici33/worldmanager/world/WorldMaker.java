@@ -20,10 +20,9 @@ public class WorldMaker {
     @Inject
     private WorldManager plugin;
 
-    public World createWorldFromTemplate(WorldTemplate worldTemplate) {
+    public World createWorldFromTemplate(WorldTemplate worldTemplate, String name) {
         File worldFile = worldTemplate.getFile();
-        String worldName = worldTemplate.getName();
-        File instanceFile = new File(plugin.getInstancesPath() + File.separator + worldName);
+        File instanceFile = new File(plugin.getInstancesPath() + File.separator + name);
         copyWorld(worldFile, instanceFile);
         WorldCreator worldCreator = new WorldCreator(instanceFile.getName());
         return worldCreator.createWorld();

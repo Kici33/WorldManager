@@ -14,8 +14,10 @@ public class WorldManager extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        Injector injector = Guice.createInjector(new MainModule());
+        Injector injector = Guice.createInjector(new MainModule(this));
+        injector.injectMembers(this);
         Bukkit.getPluginManager().registerEvents(injector.getInstance(PlayerJoin.class), this);
+
     }
 
     @Override
@@ -24,7 +26,8 @@ public class WorldManager extends JavaPlugin {
     }
 
     public String getServerRootPath() {
-        return getDataFolder().getParentFile().getAbsolutePath();
+        return new File(getDataFolder().getAbsolutePath()).getParentFile().getParentFile().getAbsolutePath();
+
     }
 
     public String getInstancesPath() {

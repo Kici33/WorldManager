@@ -11,8 +11,6 @@ public class NormalWorldTemplate implements WorldTemplate {
     private String name;
     private File file;
 
-    @Inject
-    private WorldManager plugin;
 
     public File getFile() {
         return file;
@@ -23,7 +21,7 @@ public class NormalWorldTemplate implements WorldTemplate {
     }
 
     @Inject
-    public NormalWorldTemplate(@Assisted String name) {
+    public NormalWorldTemplate(@Assisted String name, WorldManager plugin) {
         this.name = name;
         this.file = new File(plugin.getTemplatesPath() + File.separator + name);
     }

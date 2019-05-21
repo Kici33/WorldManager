@@ -1,8 +1,6 @@
 package me.kici33.worldmanager.events;
 
 import com.google.inject.Inject;
-import me.kici33.worldmanager.inject.factories.WorldTemplateFactory;
-import me.kici33.worldmanager.world.WorldMaker;
 import me.kici33.worldmanager.WorldManager;
 import me.kici33.worldmanager.world.selectors.WorldSelector;
 import org.bukkit.Bukkit;
@@ -23,7 +21,7 @@ public class PlayerJoin implements Listener {
 
 
     @EventHandler
-    public void onJoin(PlayerJoinEvent event) {
+    public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         World world = worldSelector.getWorldForPlayer(player);
         Bukkit.getScheduler().runTaskLater(plugin, () -> player.teleport(world.getSpawnLocation()), 20);
