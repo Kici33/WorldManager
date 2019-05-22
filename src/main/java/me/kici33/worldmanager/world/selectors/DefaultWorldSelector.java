@@ -1,7 +1,7 @@
 package me.kici33.worldmanager.world.selectors;
 
 import com.google.inject.Inject;
-import me.kici33.worldmanager.inject.factories.WorldTemplateFactory;
+import me.kici33.worldmanager.di.factories.WorldTemplateFactory;
 import me.kici33.worldmanager.world.WorldMaker;
 import org.bukkit.Bukkit;
 import org.bukkit.World;

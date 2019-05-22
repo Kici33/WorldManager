@@ -1,9 +1,9 @@
-package me.kici33.worldmanager.inject.modules;
+package me.kici33.worldmanager.di.modules;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 import me.kici33.worldmanager.WorldManager;
-import me.kici33.worldmanager.inject.factories.WorldTemplateFactory;
+import me.kici33.worldmanager.di.factories.WorldTemplateFactory;
 import me.kici33.worldmanager.world.selectors.DefaultWorldSelector;
 import me.kici33.worldmanager.world.selectors.WorldSelector;
 import me.kici33.worldmanager.world.templates.NormalWorldTemplate;

@@ -3,7 +3,7 @@ package me.kici33.worldmanager;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import me.kici33.worldmanager.events.PlayerJoin;
-import me.kici33.worldmanager.inject.modules.MainModule;
+import me.kici33.worldmanager.di.modules.MainModule;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
