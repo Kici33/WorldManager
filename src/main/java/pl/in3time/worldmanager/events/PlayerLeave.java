@@ -1,6 +1,7 @@
 package pl.in3time.worldmanager.events;
 
 import com.google.inject.Inject;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerKickEvent;
@@ -25,13 +26,17 @@ public class PlayerLeave implements Listener {
 
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
-        WorldInstance worldInstance = worldInstanceFactory.getWorldInstanceByName(event.getPlayer().getDisplayName());
-        BukkitUtils.unloadWorldInstanceLater(worldInstance, event.getPlayer(), 20000000000000L, plugin);
+        handlePlayerLeave(event.getPlayer());
     }
 
     @EventHandler
     public void onPlayerKick(PlayerKickEvent event) {
-        WorldInstance worldInstance = worldInstanceFactory.getWorldInstanceByName(event.getPlayer().getDisplayName());
-        BukkitUtils.unloadWorldInstanceLater(worldInstance, event.getPlayer(), 2000000000000L, plugin);
+        handlePlayerLeave(event.getPlayer());
+    }
+
+    private void handlePlayerLeave(Player player) {
+        WorldInstance worldInstance = worldInstanceFactory.getWorldInstanceByName(player.getDisplayName());
+        long worldUnloadDelay = plugin.getConfig().getLong("world-unload-delay");
+        BukkitUtils.unloadWorldInstanceLater(worldInstance, player, worldUnloadDelay * 20, plugin);
     }
 }
