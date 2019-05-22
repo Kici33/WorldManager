@@ -2,7 +2,6 @@ package me.kici33.worldmanager.world;
 
 import com.google.inject.Inject;
 import me.kici33.worldmanager.WorldManager;
-import me.kici33.worldmanager.utils.WorldCopier;
 import me.kici33.worldmanager.world.templates.WorldTemplate;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
@@ -13,10 +12,6 @@ import java.util.Arrays;
 
 
 public class WorldMaker {
-
-    @Inject
-    private WorldCopier worldCopier;
-
     @Inject
     private WorldManager plugin;
 
