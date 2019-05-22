@@ -8,6 +8,7 @@ import pl.in3time.worldmanager.world.template.WorldTemplate;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,20 +26,19 @@ public class WorldInstanceFactory {
 
 
     public WorldInstance createWorldInstanceFromTemplate(WorldTemplate worldTemplate, String instanceName) throws IOException {
-        File instanceFile = copyWorldFiles(worldTemplate, instanceName);
+        File instanceFile = new File(plugin.getInstancesPath() + File.separator + instanceName);
+        if (instanceFile.exists()) throw new FileAlreadyExistsException(instanceFile.getAbsolutePath());
+        FileUtils.copyFile(worldTemplate.getFile(), instanceFile);
         WorldInstance worldInstance = new WorldInstance(worldTemplate, instanceFile);
         instances.put(instanceName, worldInstance);
         return worldInstance;
     }
 
     public WorldInstance getWorldInstanceByName(String instanceName) {
+        File instanceFile = new File(plugin.getInstancesPath() + File.separator + instanceName);
+        if (instanceFile.exists()) {
+            instances.put(instanceName, new WorldInstance(null, instanceFile)); // todo
+        }
         return instances.get(instanceName);
-    }
-
-    private File copyWorldFiles(WorldTemplate worldTemplate, String name) throws IOException {
-        File worldFile = worldTemplate.getFile();
-        File instanceFile = new File(plugin.getInstancesPath() + File.separator + name);
-        FileUtils.copyFile(worldFile, instanceFile);
-        return instanceFile;
     }
 }
