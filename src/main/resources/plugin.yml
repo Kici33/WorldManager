@@ -1,4 +1,4 @@
-name: WorldManager
+name: WorldManagerPlugin
 version: ${project.version}
-main: me.kici33.worldmanager.WorldManager
+main: WorldManagerPlugin
 authors: [Gieted, kici33]
