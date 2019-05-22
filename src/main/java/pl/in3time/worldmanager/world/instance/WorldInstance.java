@@ -9,7 +9,6 @@ import java.io.File;
 
 
 public class WorldInstance {
-    private World bukkitWorld;
     private final WorldTemplate originalTemplate;
     private final File file;
     private String name;
@@ -31,20 +30,18 @@ public class WorldInstance {
     }
 
     public World getBukkitWorld() {
-        return bukkitWorld;
+        return Bukkit.getWorld(name);
     }
 
     public WorldTemplate getOriginalTemplate() {
         return originalTemplate;
     }
 
-    public World load() {
-        this.bukkitWorld = new WorldCreator(file.getName()).createWorld();
-        return bukkitWorld;
+    public void load() {
+        new WorldCreator(file.getName()).createWorld();
     }
 
     public boolean unload() {
-        if (bukkitWorld == null) return true;
         return Bukkit.getServer().unloadWorld(file.getName(), true);
     }
 
