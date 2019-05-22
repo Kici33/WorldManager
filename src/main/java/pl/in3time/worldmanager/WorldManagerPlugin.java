@@ -2,10 +2,11 @@ package pl.in3time.worldmanager;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import pl.in3time.worldmanager.di.modules.MainModule;
-import pl.in3time.worldmanager.events.PlayerJoin;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
+import pl.in3time.worldmanager.di.modules.MainModule;
+import pl.in3time.worldmanager.events.PlayerJoin;
+import pl.in3time.worldmanager.events.PlayerLeave;
 
 import java.io.File;
 
@@ -17,6 +18,8 @@ public class WorldManagerPlugin extends JavaPlugin {
         Injector injector = Guice.createInjector(new MainModule(this));
         injector.injectMembers(this);
         Bukkit.getPluginManager().registerEvents(injector.getInstance(PlayerJoin.class), this);
+        Bukkit.getPluginManager().registerEvents(injector.getInstance(PlayerLeave.class), this);
+        saveDefaultConfig();
     }
 
     @Override
@@ -26,7 +29,6 @@ public class WorldManagerPlugin extends JavaPlugin {
 
     private String getServerRootPath() {
         return new File(getDataFolder().getAbsolutePath()).getParentFile().getParentFile().getAbsolutePath();
-
     }
 
     public String getInstancesPath() {
@@ -34,6 +36,6 @@ public class WorldManagerPlugin extends JavaPlugin {
     }
 
     public String getTemplatesPath() {
-        return getServerRootPath() + File.separator + "template";
+        return getServerRootPath() + File.separator + "templates";
     }
 }

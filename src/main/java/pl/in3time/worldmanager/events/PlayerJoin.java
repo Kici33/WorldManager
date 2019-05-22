@@ -25,8 +25,10 @@ public class PlayerJoin implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
+
         WorldInstance world = worldSelector.getWorldInstanceForPlayer(player);
         if (!world.isLoaded()) world.load();
+        if (world.getBukkitWorld() == player.getWorld()) return;
         BukkitUtils.teleportPlayerWithDelay(player, world.getBukkitWorld().getSpawnLocation(), plugin);
     }
 }

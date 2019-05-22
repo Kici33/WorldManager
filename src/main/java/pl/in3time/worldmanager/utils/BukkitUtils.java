@@ -11,15 +11,30 @@ import java.util.function.Consumer;
 
 public class BukkitUtils {
 
-    public static void teleportPlayerWithDelay(Player player, Location location, Plugin plugin, Consumer<Boolean> callBack) {
-        Bukkit.getScheduler().runTaskLater(plugin, () -> callBack.accept(player.teleport(location)), 20);
-    }
-
     public static void teleportPlayerWithDelay(Player player, Location location, Plugin plugin) {
-        Bukkit.getScheduler().runTaskLater(plugin, () -> player.teleport(location), 20);
+        teleportPlayerWithDelay(player, location, plugin, null);
+
     }
 
-    public static void unloadWorldIstanceLater(WorldInstance worldInstance, long delay, Plugin plugin) {
-        Bukkit.getScheduler().runTaskLater(plugin, worldInstance::unload, delay);
+    public static void teleportPlayerWithDelay(Player player, Location location, Plugin plugin, Consumer<Boolean> callBack) {
+        Bukkit.getScheduler().runTaskLater(plugin, () -> {
+            boolean success = player.teleport(location);
+            if (callBack != null) callBack.accept(success);
+        }, 20);
+    }
+
+
+    public static void unloadWorldInstanceLater(WorldInstance worldInstance, Player player, long delay, Plugin plugin) {
+        unloadWorldInstanceLater(worldInstance, player, delay, plugin, null);
+    }
+
+    public static void unloadWorldInstanceLater(WorldInstance worldInstance, Player player, long delay, Plugin plugin, Consumer<Boolean> callBack) {
+        Bukkit.getScheduler().runTaskLater(plugin, () -> {
+            boolean success = false;
+            if (!player.isOnline())
+                success = worldInstance.unload();
+            if (callBack != null)
+                callBack.accept(success);
+        }, delay);
     }
 }

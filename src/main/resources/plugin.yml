@@ -1,4 +1,4 @@
 name: WorldManagerPlugin
 version: ${project.version}
-main: WorldManagerPlugin
-authors: [Gieted, kici33]
+main: pl.in3time.worldmanager.WorldManagerPlugin
+authors: [Gieted, Kici33]

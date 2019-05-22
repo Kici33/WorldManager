@@ -1,6 +1,7 @@
 package pl.in3time.worldmanager.world.instance;
 
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import pl.in3time.worldmanager.WorldManagerPlugin;
 import pl.in3time.worldmanager.utils.FileUtils;
 import pl.in3time.worldmanager.world.template.WorldTemplate;
@@ -11,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
+@Singleton
 public class WorldInstanceFactory {
     private final WorldManagerPlugin plugin;
     private final Map<String, WorldInstance> instances = new HashMap<>();
