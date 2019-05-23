@@ -29,7 +29,7 @@ public class WorldInstanceFactory {
         File instanceFile = new File(plugin.getInstancesPath() + File.separator + instanceName);
         if (instanceFile.exists()) throw new FileAlreadyExistsException(instanceFile.getAbsolutePath());
         FileUtils.copyFile(worldTemplate.getFile(), instanceFile);
-        WorldInstance worldInstance = new WorldInstance(worldTemplate, instanceFile);
+        WorldInstance worldInstance = new WorldInstance(instanceFile);
         instances.put(instanceName, worldInstance);
         return worldInstance;
     }
@@ -37,7 +37,7 @@ public class WorldInstanceFactory {
     public WorldInstance getWorldInstanceByName(String instanceName) {
         File instanceFile = new File(plugin.getInstancesPath() + File.separator + instanceName);
         if (instanceFile.exists()) {
-            instances.put(instanceName, new WorldInstance(null, instanceFile)); // todo
+            instances.put(instanceName, new WorldInstance(instanceFile));
         }
         return instances.get(instanceName);
     }

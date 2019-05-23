@@ -3,19 +3,16 @@ package pl.in3time.worldmanager.world.instance;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
-import pl.in3time.worldmanager.world.template.WorldTemplate;
 
 import java.io.File;
 
 
 public class WorldInstance {
-    private final WorldTemplate originalTemplate;
     private final File file;
     private String name;
 
 
-    public WorldInstance(WorldTemplate originalTemplate, File file) {
-        this.originalTemplate = originalTemplate;
+    public WorldInstance(File file) {
         this.file = file;
         this.name = file.getName();
     }
@@ -31,10 +28,6 @@ public class WorldInstance {
 
     public World getBukkitWorld() {
         return Bukkit.getWorld(name);
-    }
-
-    public WorldTemplate getOriginalTemplate() {
-        return originalTemplate;
     }
 
     public void load() {

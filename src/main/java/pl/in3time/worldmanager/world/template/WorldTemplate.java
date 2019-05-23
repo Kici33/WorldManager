@@ -1,6 +1,5 @@
 package pl.in3time.worldmanager.world.template;
 
-import com.google.inject.Inject;
 import pl.in3time.worldmanager.WorldManagerPlugin;
 
 import java.io.File;
